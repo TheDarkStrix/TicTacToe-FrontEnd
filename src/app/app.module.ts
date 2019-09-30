@@ -1,18 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { MainComponent } from "./main/main.component";
+import { MinmaxComponent } from "./minmax/minmax.component";
+import { LocalmultiplayerComponent } from "./localmultiplayer/localmultiplayer.component";
+import { EasyComponent } from "./easy/easy.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    MinmaxComponent,
+    LocalmultiplayerComponent,
+    EasyComponent,
+    MainComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [MainComponent]
 })
-export class AppModule { }
+export class AppModule {}
