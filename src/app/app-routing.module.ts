@@ -5,10 +5,15 @@ import { LocalmultiplayerComponent } from "./localmultiplayer/localmultiplayer.c
 import { EasyComponent } from "./easy/easy.component";
 import { MinmaxComponent } from "./minmax/minmax.component";
 import { HomeComponent } from "./home/home.component";
+import { OptionsComponent } from "./options/options.component";
 
 const routes: Routes = [
   {
     path: "",
+    component: OptionsComponent
+  },
+  {
+    path: "play",
     component: HomeComponent
   },
   {
