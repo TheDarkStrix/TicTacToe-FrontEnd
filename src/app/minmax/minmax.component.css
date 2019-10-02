@@ -88,7 +88,7 @@ a:visited {
 }
 
 /* ****************** Restart Button ****************** */
-#bnt-restart {
+.bnt-restart {
   display: block;
   padding: 10px;
   margin-left: auto;

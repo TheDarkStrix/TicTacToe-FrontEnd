@@ -6,9 +6,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./minmax.component.css"]
 })
 export class MinmaxComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   /*Code of Minmax here*/
 
@@ -16,6 +16,9 @@ export class MinmaxComponent implements OnInit {
 
   HUMAN = -1;
   COMP = +1;
+
+  restartDisable = false;
+  restartText = 'Start AI';
 
   /* Function to heuristic evaluation of state. */
   evalute(state) {
@@ -111,7 +114,10 @@ export class MinmaxComponent implements OnInit {
       return [-1, -1, score];
     }
 
-    this.emptyCells(state).forEach(function(cell) {
+
+    // var scsore: number = this.minimax(state, depth - 1, -player);
+
+    this.emptyCells(state).forEach((cell) => {
       var x = cell[0];
       var y = cell[1];
       state[x][y] = player;
@@ -156,17 +162,17 @@ export class MinmaxComponent implements OnInit {
   }
 
   /* main */
-  clickedCell(cell) {
-    var button = document.getElementById("bnt-restart");
-    //button.disabled = true;
+  clickedCell(x, y) {
+
+    cell = document.getElementById(String(x) + String(y));
+
+    this.restartDisable = true;
     var conditionToContinue =
       this.gameOverAll(this.board) == false &&
       this.emptyCells(this.board).length > 0;
 
     if (conditionToContinue == true) {
-      var x = cell.split("")[0];
-      var y = cell.split("")[1];
-      console.log("this is x : " + x, "this is y : " + y);
+      console.log("this is x : " + x, " y : " + y);
       var move = this.setMove(x, y, this.HUMAN);
       if (move == true) {
         cell.innerHTML = "X";
@@ -254,11 +260,12 @@ export class MinmaxComponent implements OnInit {
   }
 
   /* Restart the game*/
-  restartBnt(button) {
-    if (button.value == "Start AI") {
+  restartBnt() {
+
+    if (this.restartText === "Start AI") {
       this.aiTurn();
-      button.disabled = true;
-    } else if (button.value == "Restart") {
+      this.restartDisable = true;
+    } else if (this.restartText === "Restart") {
       var htmlBoard;
       var msg;
 
@@ -270,7 +277,7 @@ export class MinmaxComponent implements OnInit {
           htmlBoard.innerHTML = "";
         }
       }
-      button.value = "Start AI";
+      this.restartText = "Start AI";
       msg = document.getElementById("message");
       msg.innerHTML = "";
     }
