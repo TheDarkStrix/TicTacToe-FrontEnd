@@ -1,1 +1,31 @@
-<p>minmax works!</p>
+<header>
+  <p>Minimax Algorithm</p>
+</header>
+<br />
+<p id="message"></p>
+<br />
+<table id="tab-tic-tac-toe" cellspacing="0">
+  <tr>
+    <td id="00" (click)="clickedCell('00')"></td>
+    <td id="01" (click)="clickedCell('01')"></td>
+    <td id="02" (click)="clickedCell('02')"></td>
+  </tr>
+  <tr>
+    <td id="10" (click)="clickedCell('10')"></td>
+    <td id="11" (click)="clickedCell('11')"></td>
+    <td id="12" (click)="clickedCell('12')"></td>
+  </tr>
+  <tr>
+    <td id="20" (click)="clickedCell('20')"></td>
+    <td id="21" (click)="clickedCell('21')"></td>
+    <td id="22" (click)="clickedCell('22')"></td>
+  </tr>
+</table>
+
+<br /><br />
+<input
+  type="button"
+  value="Start AI"
+  id="bnt-restart"
+  (click)="restartBnt(this)"
+/>
