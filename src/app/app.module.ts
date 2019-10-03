@@ -3,11 +3,13 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { MainComponent } from "./main/main.component";
-import { MinmaxComponent } from "./minmax/minmax.component";
-import { LocalmultiplayerComponent } from "./localmultiplayer/localmultiplayer.component";
-import { EasyComponent } from "./easy/easy.component";
-import { HomeComponent } from './home/home.component';
-import { OptionsComponent } from './options/options.component';
+import { MinmaxComponent } from "./game/minmax/minmax.component";
+import { LocalmultiplayerComponent } from "./game/localmultiplayer/localmultiplayer.component";
+import { EasyComponent } from "./game/easy/easy.component";
+import { HomeComponent } from "./home/home.component";
+import { OptionsComponent } from "./options/options.component";
+import { LoginComponent } from "./user/login/login.component";
+import { RegisterComponent } from "./user/register/register.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { OptionsComponent } from './options/options.component';
     EasyComponent,
     MainComponent,
     HomeComponent,
-    OptionsComponent
+    OptionsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
