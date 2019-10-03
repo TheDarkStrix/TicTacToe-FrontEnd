@@ -6,9 +6,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./minmax.component.css"]
 })
 export class MinmaxComponent implements OnInit {
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   /*Code of Minmax here*/
 
@@ -18,7 +18,7 @@ export class MinmaxComponent implements OnInit {
   COMP = +1;
 
   restartDisable = false;
-  restartText = 'Start AI';
+  restartText = "Start AI";
 
   /* Function to heuristic evaluation of state. */
   evalute(state) {
@@ -114,10 +114,9 @@ export class MinmaxComponent implements OnInit {
       return [-1, -1, score];
     }
 
-
     // var scsore: number = this.minimax(state, depth - 1, -player);
 
-    this.emptyCells(state).forEach((cell) => {
+    this.emptyCells(state).forEach(cell => {
       var x = cell[0];
       var y = cell[1];
       state[x][y] = player;
@@ -163,7 +162,6 @@ export class MinmaxComponent implements OnInit {
 
   /* main */
   clickedCell(x, y) {
-
     cell = document.getElementById(String(x) + String(y));
 
     this.restartDisable = true;
@@ -247,24 +245,25 @@ export class MinmaxComponent implements OnInit {
       this.emptyCells(this.board).length == 0 &&
       !this.gameOverAll(this.board)
     ) {
-      //var msg = document.getElementById("message");
-      //msg.innerHTML = "Draw!";
+      msg = document.getElementById("message");
+      msg.innerHTML = "Draw!";
     }
     if (
       this.gameOverAll(this.board) == true ||
       this.emptyCells(this.board).length == 0
     ) {
-      //button.value = "Restart";
-      //button.disabled = false;
+      this.restartText = "Restart";
+      this.restartDisable = false;
     }
   }
 
   /* Restart the game*/
   restartBnt() {
-
     if (this.restartText === "Start AI") {
+      console.log("Okay AI will play");
       this.aiTurn();
-      this.restartDisable = true;
+      this.restartDisable = false;
+      this.restartText = "Restart";
     } else if (this.restartText === "Restart") {
       var htmlBoard;
       var msg;
@@ -278,6 +277,7 @@ export class MinmaxComponent implements OnInit {
         }
       }
       this.restartText = "Start AI";
+      this.restartDisable = false;
       msg = document.getElementById("message");
       msg.innerHTML = "";
     }
