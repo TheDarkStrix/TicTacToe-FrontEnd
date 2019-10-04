@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: game;
+  src: url(./assets/bauserif.ttf);
+}
+
+@font-face {
+  font-family: logo;
+  src: url(./assets/Multicolore.otf);
+}

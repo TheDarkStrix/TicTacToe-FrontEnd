@@ -1,4 +1,12 @@
 import { Component, OnInit } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from "@angular/animations";
 
 @Component({
   selector: "app-localmultiplayer",
@@ -6,7 +14,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./localmultiplayer.component.css"]
 })
 export class LocalmultiplayerComponent implements OnInit {
-  constructor() {}
+  constructor(private toastrService: ToastrService) {}
 
   ngOnInit() {}
 
@@ -16,11 +24,15 @@ export class LocalmultiplayerComponent implements OnInit {
 
   PLAYER1 = -1;
   PLAYER2 = +1;
-
   restartDisable = false;
-  restartText = "Start AI";
+  restartText = "Opponent First !";
   CurrentPlayer = "Player1";
   StartingPlayer = "Player1";
+
+  justice = "./assets/libra.png";
+  win = "./assets/trophy.png";
+  loss = "./assets/game-over.png";
+
   status(currentPlayer) {
     if (currentPlayer == "Player1") this.CurrentPlayer = "Player2";
     else this.CurrentPlayer = "Player1";
@@ -76,6 +88,7 @@ export class LocalmultiplayerComponent implements OnInit {
         return true;
       } else {
         console.log("INVALID MOVE");
+        this.toastrService.error("Invalid Move", "GameBot:");
         return false;
       }
     } catch (e) {
@@ -119,11 +132,13 @@ export class LocalmultiplayerComponent implements OnInit {
       console.log("this is x : " + x, " y : " + y);
       var move = this.setMove(x, y, this.PLAYER1);
       if (move == true && this.CurrentPlayer == "Player1") {
+        cell.className = "X animated pulse";
         cell.innerHTML = "X";
         this.board[x][y] = -1;
         this.status(this.StartingPlayer);
         console.log("X" + this.CurrentPlayer);
       } else if (move == true && this.CurrentPlayer == "Player2") {
+        cell.className = "O animated pulse";
         cell.innerHTML = "O";
         this.board[x][y] = 1;
         this.status(this.CurrentPlayer);
@@ -190,11 +205,8 @@ export class LocalmultiplayerComponent implements OnInit {
         cell = document.getElementById(
           String(lines[i][0]) + String(lines[i][1])
         );
-        cell.style.color = "red";
+        cell.className = "red";
       }
-
-      msg = document.getElementById("message");
-      msg.innerHTML = "You lose!";
     }
     // If Human is played
     if (this.gameOver(this.board, this.PLAYER1)) {
@@ -254,24 +266,22 @@ export class LocalmultiplayerComponent implements OnInit {
         cell = document.getElementById(
           String(lines[i][0]) + String(lines[i][1])
         );
-        cell.style.color = "red";
+        cell.className = "red";
       }
     }
+
     // Display message according to who won the match
     if (this.gameOver(this.board, this.PLAYER2)) {
-      msg = document.getElementById("message");
-      msg.innerHTML = "O lose!";
+      this.toastrService.success("O Wins!!", "GameBot:");
     } else if (this.gameOver(this.board, this.PLAYER1)) {
-      msg = document.getElementById("message");
-      msg.innerHTML = "X win!";
+      this.toastrService.success("X Wins!!", "GameBot:");
     }
     // Display DRAW
     if (
       this.emptyCells(this.board).length == 0 &&
       !this.gameOverAll(this.board)
     ) {
-      msg = document.getElementById("message");
-      msg.innerHTML = "Draw!";
+      this.toastrService.info("DRAW !", "GameBot:");
     }
     if (
       this.gameOverAll(this.board) == true ||
@@ -284,27 +294,31 @@ export class LocalmultiplayerComponent implements OnInit {
 
   /* Restart the game*/
   restartBnt() {
-    if (this.restartText === "Start AI") {
+    if (this.restartText === "Opponent First !") {
       console.log("Okay AI will play");
       this.restartDisable = false;
       this.restartText = "Restart";
       this.CurrentPlayer = "Player2";
+      this.toastrService.warning("Switched to O , Start Playing !", "GameBot:");
     } else if (this.restartText === "Restart") {
       var htmlBoard;
       var msg;
       this.CurrentPlayer = "Player1";
+      this.toastrService.warning("Switched to X , Start Playing !", "GameBot:");
       for (var x = 0; x < 3; x++) {
         for (var y = 0; y < 3; y++) {
           this.board[x][y] = 0;
           htmlBoard = document.getElementById(String(x) + String(y));
-          htmlBoard.style.color = "#444";
           htmlBoard.innerHTML = "";
         }
       }
-      this.restartText = "Start AI";
-      this.restartDisable = false;
+      this.restartText = "Opponent First !";
+      this.restartDisable = true;
       msg = document.getElementById("message");
       msg.innerHTML = "";
     }
+  }
+  restartOnly() {
+    location.reload();
   }
 }

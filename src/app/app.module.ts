@@ -1,5 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { ToastrModule } from "ngx-toastr";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { MainComponent } from "./main/main.component";
@@ -22,7 +24,19 @@ import { RegisterComponent } from "./user/register/register.component";
     LoginComponent,
     RegisterComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      disableTimeOut: true,
+      progressBar: true,
+      progressAnimation: "increasing",
+      tapToDismiss: true,
+      closeButton: true
+    })
+  ],
   providers: [],
   bootstrap: [MainComponent]
 })
