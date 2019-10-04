@@ -83,7 +83,7 @@ a:visited {
 }
 
 #tab-tic-tac-toe td:hover {
-  background: #ECECEC;
+  background: rgba(248, 248, 248, 0.741);
   z-index: -555;
 }
 
@@ -269,7 +269,7 @@ table th:not([align]) {
 }
 
 .onoffswitch-inner:after {
-  content: "Y";
+  content: "O";
   padding-right: 10px;
   background-color: #EEEEEE;
   color: #999999;
