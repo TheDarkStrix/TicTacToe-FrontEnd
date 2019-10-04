@@ -135,15 +135,22 @@ export class MinmaxComponent implements OnInit {
     return best;
   }
 
+  // Get Random Number from 0 to 2
+  getRandomNumber(min, max) {
+    return Math.round(Number(Math.random() * (max - min) + min));
+  }
+
   /* It calls the minimax function */
   aiTurn() {
     var x, y;
     var move;
     var cell;
 
-    if (this.emptyCells(this.board).length == 9) {
-      x = Math.round(Math.random() * 3);
-      y = Math.round(Math.random() * 3);
+    if (this.emptyCells(this.board).length === 9) {
+      console.log(this.emptyCells(this.board).length);
+      x = this.getRandomNumber(0, 2);
+      y = this.getRandomNumber(0, 2);
+      console.log("x+y for empty : " + x + y);
     } else {
       move = this.minimax(
         this.board,
@@ -157,6 +164,17 @@ export class MinmaxComponent implements OnInit {
     if (this.setMove(x, y, this.COMP)) {
       cell = document.getElementById(String(x) + String(y));
       cell.innerHTML = "O";
+      console.log("O" + " is placed at " + x + y);
+    }
+  }
+
+  gameinprogress(valid) {
+    if (valid === true) {
+      this.restartText = "Restart";
+      this.restartDisable = false;
+    } else {
+      this.restartText = "";
+      this.restartDisable = false;
     }
   }
 
@@ -170,6 +188,7 @@ export class MinmaxComponent implements OnInit {
       this.emptyCells(this.board).length > 0;
 
     if (conditionToContinue == true) {
+      this.gameinprogress(true);
       console.log("this is x : " + x, " y : " + y);
       var move = this.setMove(x, y, this.HUMAN);
       if (move == true) {
@@ -260,8 +279,8 @@ export class MinmaxComponent implements OnInit {
   /* Restart the game*/
   restartBnt() {
     if (this.restartText === "Start AI") {
-      console.log("Okay AI will play");
       this.aiTurn();
+      console.log("Okay AI will play");
       this.restartDisable = false;
       this.restartText = "Restart";
     } else if (this.restartText === "Restart") {

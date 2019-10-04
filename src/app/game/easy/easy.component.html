@@ -1,1 +1,32 @@
-<p>easy works!</p>
+<header>
+  <p>Easy Algorithm</p>
+</header>
+<br />
+<p id="message"></p>
+<br />
+<table id="tab-tic-tac-toe" cellspacing="0">
+  <tr>
+    <td id="00" (click)="clickedCell('0', '0')"></td>
+    <td id="01" (click)="clickedCell('0', '1')"></td>
+    <td id="02" (click)="clickedCell('0', '2')"></td>
+  </tr>
+  <tr>
+    <td id="10" (click)="clickedCell('1', '0')"></td>
+    <td id="11" (click)="clickedCell('1', '1')"></td>
+    <td id="12" (click)="clickedCell('1', '2')"></td>
+  </tr>
+  <tr>
+    <td id="20" (click)="clickedCell('2', '0')"></td>
+    <td id="21" (click)="clickedCell('2', '1')"></td>
+    <td id="22" (click)="clickedCell('2', '2')"></td>
+  </tr>
+</table>
+
+<br /><br />
+<input
+  type="button"
+  value="{{ restartText }}"
+  [disabled]="restartDisable"
+  class="bnt-restart"
+  (click)="restartBnt()"
+/>
