@@ -1,40 +1,30 @@
 <div class="container">
-  <div class="columns margin">
-    <div class="column">
-      <div class="columns is-mobile is-centered is-vcentered">
-        <div class="column has-text-right">
-          <img [src]="win" alt="" />
-        </div>
-        <div class="column">
-          <span class="title">Wins :</span><br />
-          <span class="subtitle">10</span>
-        </div>
+  <div class="row mt-4 mb-4">
+    <div class="col d-flex justify-content-around">
+      <div class="col text no-pad text-right pr-2">
+        <img [src]="win" alt="" />
       </div>
+      <div class="col align-self-center no-pad">Win:10</div>
     </div>
-    <div class="column">
-      <div class="columns is-mobile is-centered is-vcentered">
-        <div class="column has-text-right">
+    <div class="col">
+      <div class="col d-flex justify-content-around">
+        <div class="col text no-pad text-right pr-2">
           <img [src]="loss" alt="" />
         </div>
-        <div class="column">
-          <span class="title">Loss :</span><br />
-          <span class="subtitle">10</span>
-        </div>
+        <div class="col align-self-center no-pad">Win:10</div>
       </div>
     </div>
-    <div class="column">
-      <div class="columns is-mobile is-centered is-vcentered">
-        <div class="column has-text-right">
+    <div class="col">
+      <div class="col d-flex justify-content-around">
+        <div class="col text no-pad text-right pr-2">
           <img [src]="justice" alt="" />
         </div>
-        <div class="column">
-          <span class="title">Draw :</span><br />
-          <span class="subtitle">10</span>
-        </div>
+        <div class="col align-self-center no-pad">Win:10</div>
       </div>
     </div>
   </div>
 </div>
+
 <table id="tab-tic-tac-toe" cellspacing="0">
   <tr>
     <td
@@ -58,28 +48,15 @@
 </table>
 
 <br /><br />
-<div class="columns">
-  <div class="column">
-    <div class="buttons is-right">
-      <!-- Rounded switch -->
-      <div class="onoffswitch">
-        <input
-          type="checkbox"
-          name="onoffswitch"
-          [disabled]="restartDisable"
-          class="onoffswitch-checkbox"
-          (click)="restartBnt()"
-          id="myonoffswitch"
-          checked
-        />
-        <label class="onoffswitch-label" for="myonoffswitch">
-          <span class="onoffswitch-inner"></span>
-          <span class="onoffswitch-switch"></span>
-        </label>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <div class="buttons text-center">
+        <!-- Rounded switch -->
+        <button type="button" (click)="restartBnt()" class="btn btn-primary">
+          {{ restartText }}
+        </button>
       </div>
     </div>
-  </div>
-  <div class="column" style="padding: 20px;">
-    <a (click)="restartOnly()" class="button is-primary">Restart</a>
   </div>
 </div>

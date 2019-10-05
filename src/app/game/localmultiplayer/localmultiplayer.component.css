@@ -134,12 +134,6 @@ table th:not([align]) {
   bottom: 2.6em;
 } */
 
-.btn {
-  background-color: gray;
-  color: gray;
-  border-radius: 50%;
-  width: 50%;
-}
 
 .toggle-button-cover {
   display: table-cell;
@@ -303,7 +297,7 @@ table th:not([align]) {
 }
 
 .red {
-  color: red !important;
+  color: black !important;
 }
 
 .restart {
@@ -315,4 +309,18 @@ table th:not([align]) {
 
 .margin {
   margin: 1.6em;
+}
+
+.restart img {
+  width: 50%;
+}
+
+.circular {
+  padding: 1.6em;
+  border-radius: 50%;
+}
+
+.no-pad {
+  padding-left: 0px;
+  padding-right: 0px;
 }

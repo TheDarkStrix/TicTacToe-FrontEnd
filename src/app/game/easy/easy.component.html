@@ -1,12 +1,37 @@
-<header>
-  <p>Easy Algorithm</p>
-</header>
-<br />
-<p id="message"></p>
-<br />
+<div class="container">
+  <div class="row mt-4 mb-4">
+    <div class="col d-flex justify-content-around">
+      <div class="col text no-pad text-right pr-2">
+        <img [src]="win" alt="" />
+      </div>
+      <div class="col align-self-center no-pad">Win:10</div>
+    </div>
+    <div class="col">
+      <div class="col d-flex justify-content-around">
+        <div class="col text no-pad text-right pr-2">
+          <img [src]="loss" alt="" />
+        </div>
+        <div class="col align-self-center no-pad">Win:10</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col d-flex justify-content-around">
+        <div class="col text no-pad text-right pr-2">
+          <img [src]="justice" alt="" />
+        </div>
+        <div class="col align-self-center no-pad">Win:10</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <table id="tab-tic-tac-toe" cellspacing="0">
   <tr>
-    <td id="00" (click)="clickedCell('0', '0')"></td>
+    <td
+      id="00"
+      [ngClass]="colorcode ? 'X' : 'O'"
+      (click)="clickedCell('0', '0')"
+    ></td>
     <td id="01" (click)="clickedCell('0', '1')"></td>
     <td id="02" (click)="clickedCell('0', '2')"></td>
   </tr>
@@ -23,10 +48,15 @@
 </table>
 
 <br /><br />
-<input
-  type="button"
-  value="{{ restartText }}"
-  [disabled]="restartDisable"
-  class="bnt-restart"
-  (click)="restartBnt()"
-/>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <div class="buttons text-center">
+        <!-- Rounded switch -->
+        <button type="button" (click)="restartBnt()" class="btn btn-primary">
+          {{ restartText }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

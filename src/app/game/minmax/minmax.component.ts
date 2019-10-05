@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-minmax",
@@ -6,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./minmax.component.css"]
 })
 export class MinmaxComponent implements OnInit {
-  constructor() {}
+  constructor(private toastrService: ToastrService) {}
 
   ngOnInit() {}
 
@@ -16,6 +17,10 @@ export class MinmaxComponent implements OnInit {
 
   HUMAN = -1;
   COMP = +1;
+
+  justice = "./assets/libra.png";
+  win = "./assets/trophy.png";
+  loss = "./assets/game-over.png";
 
   restartDisable = false;
   restartText = "Start AI";
@@ -160,10 +165,20 @@ export class MinmaxComponent implements OnInit {
       x = move[0];
       y = move[1];
     }
+    this.placethepointer(x, y, this.COMP);
+  }
 
-    if (this.setMove(x, y, this.COMP)) {
+  placethepointer(x, y, player) {
+    var cell;
+    if (this.setMove(x, y, player)) {
       cell = document.getElementById(String(x) + String(y));
-      cell.innerHTML = "O";
+      if (player === 1) {
+        cell.className = "O animated pulse";
+        cell.innerHTML = "O";
+      } else if (player === -1) {
+        cell.className = "X animated pulse";
+        cell.innerHTML = "X";
+      }
       console.log("O" + " is placed at " + x + y);
     }
   }
@@ -192,6 +207,7 @@ export class MinmaxComponent implements OnInit {
       console.log("this is x : " + x, " y : " + y);
       var move = this.setMove(x, y, this.HUMAN);
       if (move == true) {
+        cell.className = "X animated pulse";
         cell.innerHTML = "X";
         if (conditionToContinue) this.aiTurn();
       }
@@ -199,7 +215,6 @@ export class MinmaxComponent implements OnInit {
     if (this.gameOver(this.board, this.COMP)) {
       var lines;
       var cell;
-      var msg;
 
       if (
         this.board[0][0] == 1 &&
@@ -254,18 +269,21 @@ export class MinmaxComponent implements OnInit {
         cell = document.getElementById(
           String(lines[i][0]) + String(lines[i][1])
         );
-        cell.style.color = "red";
+        cell.className = "red";
       }
-
-      msg = document.getElementById("message");
-      msg.innerHTML = "You lose!";
     }
+    // Display message according to who won the match
+    if (this.gameOver(this.board, this.COMP)) {
+      this.toastrService.success("You Lose!", "GameBot:");
+    } else if (this.gameOver(this.board, this.HUMAN)) {
+      this.toastrService.success("You Win!", "GameBot:");
+    }
+    // Display DRAW
     if (
       this.emptyCells(this.board).length == 0 &&
       !this.gameOverAll(this.board)
     ) {
-      msg = document.getElementById("message");
-      msg.innerHTML = "Draw!";
+      this.toastrService.warning("Game DRAW!", "GameBot:");
     }
     if (
       this.gameOverAll(this.board) == true ||
@@ -279,26 +297,22 @@ export class MinmaxComponent implements OnInit {
   /* Restart the game*/
   restartBnt() {
     if (this.restartText === "Start AI") {
+      this.toastrService.warning("Sure , AI will play first !", "GameBot:");
       this.aiTurn();
       console.log("Okay AI will play");
       this.restartDisable = false;
       this.restartText = "Restart";
     } else if (this.restartText === "Restart") {
       var htmlBoard;
-      var msg;
-
       for (var x = 0; x < 3; x++) {
         for (var y = 0; y < 3; y++) {
           this.board[x][y] = 0;
           htmlBoard = document.getElementById(String(x) + String(y));
-          htmlBoard.style.color = "#444";
           htmlBoard.innerHTML = "";
         }
       }
       this.restartText = "Start AI";
       this.restartDisable = false;
-      msg = document.getElementById("message");
-      msg.innerHTML = "";
     }
   }
 }

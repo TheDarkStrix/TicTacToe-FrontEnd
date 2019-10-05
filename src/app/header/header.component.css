@@ -1,12 +1,1 @@
-.head {
-  font-family: logo;
-  font-size: 2em;
-  flex-grow: 1;
-  justify-content: center;
-  color: white;
-  display: flex;
-}
 
-.navbar-brand {
-  flex: auto;
-}

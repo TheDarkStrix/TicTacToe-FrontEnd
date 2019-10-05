@@ -32,6 +32,7 @@ export class LocalmultiplayerComponent implements OnInit {
   justice = "./assets/libra.png";
   win = "./assets/trophy.png";
   loss = "./assets/game-over.png";
+  restart = "./assets/icon.png";
 
   status(currentPlayer) {
     if (currentPlayer == "Player1") this.CurrentPlayer = "Player2";
@@ -303,8 +304,8 @@ export class LocalmultiplayerComponent implements OnInit {
     } else if (this.restartText === "Restart") {
       var htmlBoard;
       var msg;
-      this.CurrentPlayer = "Player1";
-      this.toastrService.warning("Switched to X , Start Playing !", "GameBot:");
+      // this.CurrentPlayer = "Player1";
+      // this.toastrService.warning("Switched to X , Start Playing !", "GameBot:");
       for (var x = 0; x < 3; x++) {
         for (var y = 0; y < 3; y++) {
           this.board[x][y] = 0;
@@ -317,8 +318,5 @@ export class LocalmultiplayerComponent implements OnInit {
       msg = document.getElementById("message");
       msg.innerHTML = "";
     }
-  }
-  restartOnly() {
-    location.reload();
   }
 }
