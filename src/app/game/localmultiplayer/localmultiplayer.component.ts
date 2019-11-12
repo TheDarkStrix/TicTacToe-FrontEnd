@@ -20,10 +20,18 @@ export class LocalmultiplayerComponent implements OnInit {
 
   /*Code of Minmax here*/
 
-  board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+  board = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+  ];
 
   PLAYER1 = -1;
   PLAYER2 = +1;
+  P1 = 0;
+  P2 = 0;
+  DRAW = 0;
+
   restartDisable = false;
   restartText = "Opponent First !";
   CurrentPlayer = "Player1";
@@ -119,6 +127,16 @@ export class LocalmultiplayerComponent implements OnInit {
     }
   }
 
+  calculatescore(won) {
+    if (won == this.PLAYER1) {
+      this.P1++;
+    } else if (won == this.PLAYER2) {
+      this.P2++;
+    } else {
+      this.DRAW++;
+    }
+  }
+
   /* main */
   clickedCell(x, y) {
     cell = document.getElementById(String(x) + String(y));
@@ -155,49 +173,81 @@ export class LocalmultiplayerComponent implements OnInit {
         this.board[0][1] == 1 &&
         this.board[0][2] == 1
       )
-        lines = [[0, 0], [0, 1], [0, 2]];
+        lines = [
+          [0, 0],
+          [0, 1],
+          [0, 2]
+        ];
       else if (
         this.board[1][0] == 1 &&
         this.board[1][1] == 1 &&
         this.board[1][2] == 1
       )
-        lines = [[1, 0], [1, 1], [1, 2]];
+        lines = [
+          [1, 0],
+          [1, 1],
+          [1, 2]
+        ];
       else if (
         this.board[2][0] == 1 &&
         this.board[2][1] == 1 &&
         this.board[2][2] == 1
       )
-        lines = [[2, 0], [2, 1], [2, 2]];
+        lines = [
+          [2, 0],
+          [2, 1],
+          [2, 2]
+        ];
       else if (
         this.board[0][0] == 1 &&
         this.board[1][0] == 1 &&
         this.board[2][0] == 1
       )
-        lines = [[0, 0], [1, 0], [2, 0]];
+        lines = [
+          [0, 0],
+          [1, 0],
+          [2, 0]
+        ];
       else if (
         this.board[0][1] == 1 &&
         this.board[1][1] == 1 &&
         this.board[2][1] == 1
       )
-        lines = [[0, 1], [1, 1], [2, 1]];
+        lines = [
+          [0, 1],
+          [1, 1],
+          [2, 1]
+        ];
       else if (
         this.board[0][2] == 1 &&
         this.board[1][2] == 1 &&
         this.board[2][2] == 1
       )
-        lines = [[0, 2], [1, 2], [2, 2]];
+        lines = [
+          [0, 2],
+          [1, 2],
+          [2, 2]
+        ];
       else if (
         this.board[0][0] == 1 &&
         this.board[1][1] == 1 &&
         this.board[2][2] == 1
       )
-        lines = [[0, 0], [1, 1], [2, 2]];
+        lines = [
+          [0, 0],
+          [1, 1],
+          [2, 2]
+        ];
       else if (
         this.board[2][0] == 1 &&
         this.board[1][1] == 1 &&
         this.board[0][2] == 1
       )
-        lines = [[2, 0], [1, 1], [0, 2]];
+        lines = [
+          [2, 0],
+          [1, 1],
+          [0, 2]
+        ];
       if (this.gameOver(this.board, this.PLAYER1)) {
         console.log("human win!");
       }
@@ -216,49 +266,81 @@ export class LocalmultiplayerComponent implements OnInit {
         this.board[0][1] == -1 &&
         this.board[0][2] == -1
       )
-        lines = [[0, 0], [0, 1], [0, 2]];
+        lines = [
+          [0, 0],
+          [0, 1],
+          [0, 2]
+        ];
       else if (
         this.board[1][0] == -1 &&
         this.board[1][1] == -1 &&
         this.board[1][2] == -1
       )
-        lines = [[1, 0], [1, 1], [1, 2]];
+        lines = [
+          [1, 0],
+          [1, 1],
+          [1, 2]
+        ];
       else if (
         this.board[2][0] == -1 &&
         this.board[2][1] == -1 &&
         this.board[2][2] == -1
       )
-        lines = [[2, 0], [2, 1], [2, 2]];
+        lines = [
+          [2, 0],
+          [2, 1],
+          [2, 2]
+        ];
       else if (
         this.board[0][0] == -1 &&
         this.board[1][0] == -1 &&
         this.board[2][0] == -1
       )
-        lines = [[0, 0], [1, 0], [2, 0]];
+        lines = [
+          [0, 0],
+          [1, 0],
+          [2, 0]
+        ];
       else if (
         this.board[0][1] == -1 &&
         this.board[1][1] == -1 &&
         this.board[2][1] == -1
       )
-        lines = [[0, 1], [1, 1], [2, 1]];
+        lines = [
+          [0, 1],
+          [1, 1],
+          [2, 1]
+        ];
       else if (
         this.board[0][2] == -1 &&
         this.board[1][2] == -1 &&
         this.board[2][2] == -1
       )
-        lines = [[0, 2], [1, 2], [2, 2]];
+        lines = [
+          [0, 2],
+          [1, 2],
+          [2, 2]
+        ];
       else if (
         this.board[0][0] == -1 &&
         this.board[1][1] == -1 &&
         this.board[2][2] == -1
       )
-        lines = [[0, 0], [1, 1], [2, 2]];
+        lines = [
+          [0, 0],
+          [1, 1],
+          [2, 2]
+        ];
       else if (
         this.board[2][0] == -1 &&
         this.board[1][1] == -1 &&
         this.board[0][2] == -1
       )
-        lines = [[2, 0], [1, 1], [0, 2]];
+        lines = [
+          [2, 0],
+          [1, 1],
+          [0, 2]
+        ];
       if (this.gameOver(this.board, this.PLAYER1)) {
         console.log("human win!");
       }
@@ -273,8 +355,10 @@ export class LocalmultiplayerComponent implements OnInit {
 
     // Display message according to who won the match
     if (this.gameOver(this.board, this.PLAYER2)) {
+      this.calculatescore(this.PLAYER2);
       this.toastrService.success("O Wins!!", "GameBot:");
     } else if (this.gameOver(this.board, this.PLAYER1)) {
+      this.calculatescore(this.PLAYER1);
       this.toastrService.success("X Wins!!", "GameBot:");
     }
     // Display DRAW
@@ -282,6 +366,7 @@ export class LocalmultiplayerComponent implements OnInit {
       this.emptyCells(this.board).length == 0 &&
       !this.gameOverAll(this.board)
     ) {
+      this.calculatescore("DRAW");
       this.toastrService.info("DRAW !", "GameBot:");
     }
     if (

@@ -12,10 +12,18 @@ export class EasyComponent implements OnInit {
   ngOnInit() {}
   /*Code of Minmax here*/
 
-  board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+  board = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+  ];
 
   HUMAN = -1;
   COMP = +1;
+
+  Hscore = 0;
+  Cscore = 0;
+  DRAW = 0;
 
   justice = "./assets/libra.png";
   win = "./assets/trophy.png";
@@ -193,6 +201,16 @@ export class EasyComponent implements OnInit {
     }
   }
 
+  calculatescore(won) {
+    if (won == this.HUMAN) {
+      this.Hscore++;
+    } else if (won == this.COMP) {
+      this.Cscore++;
+    } else {
+      this.DRAW++;
+    }
+  }
+
   /* main */
   clickedCell(x, y) {
     cell = document.getElementById(String(x) + String(y));
@@ -218,49 +236,81 @@ export class EasyComponent implements OnInit {
         this.board[0][1] == 1 &&
         this.board[0][2] == 1
       )
-        lines = [[0, 0], [0, 1], [0, 2]];
+        lines = [
+          [0, 0],
+          [0, 1],
+          [0, 2]
+        ];
       else if (
         this.board[1][0] == 1 &&
         this.board[1][1] == 1 &&
         this.board[1][2] == 1
       )
-        lines = [[1, 0], [1, 1], [1, 2]];
+        lines = [
+          [1, 0],
+          [1, 1],
+          [1, 2]
+        ];
       else if (
         this.board[2][0] == 1 &&
         this.board[2][1] == 1 &&
         this.board[2][2] == 1
       )
-        lines = [[2, 0], [2, 1], [2, 2]];
+        lines = [
+          [2, 0],
+          [2, 1],
+          [2, 2]
+        ];
       else if (
         this.board[0][0] == 1 &&
         this.board[1][0] == 1 &&
         this.board[2][0] == 1
       )
-        lines = [[0, 0], [1, 0], [2, 0]];
+        lines = [
+          [0, 0],
+          [1, 0],
+          [2, 0]
+        ];
       else if (
         this.board[0][1] == 1 &&
         this.board[1][1] == 1 &&
         this.board[2][1] == 1
       )
-        lines = [[0, 1], [1, 1], [2, 1]];
+        lines = [
+          [0, 1],
+          [1, 1],
+          [2, 1]
+        ];
       else if (
         this.board[0][2] == 1 &&
         this.board[1][2] == 1 &&
         this.board[2][2] == 1
       )
-        lines = [[0, 2], [1, 2], [2, 2]];
+        lines = [
+          [0, 2],
+          [1, 2],
+          [2, 2]
+        ];
       else if (
         this.board[0][0] == 1 &&
         this.board[1][1] == 1 &&
         this.board[2][2] == 1
       )
-        lines = [[0, 0], [1, 1], [2, 2]];
+        lines = [
+          [0, 0],
+          [1, 1],
+          [2, 2]
+        ];
       else if (
         this.board[2][0] == 1 &&
         this.board[1][1] == 1 &&
         this.board[0][2] == 1
       )
-        lines = [[2, 0], [1, 1], [0, 2]];
+        lines = [
+          [2, 0],
+          [1, 1],
+          [0, 2]
+        ];
       if (this.gameOver(this.board, this.HUMAN)) {
         console.log("human win!");
       }
@@ -279,49 +329,81 @@ export class EasyComponent implements OnInit {
         this.board[0][1] == -1 &&
         this.board[0][2] == -1
       )
-        lines = [[0, 0], [0, 1], [0, 2]];
+        lines = [
+          [0, 0],
+          [0, 1],
+          [0, 2]
+        ];
       else if (
         this.board[1][0] == -1 &&
         this.board[1][1] == -1 &&
         this.board[1][2] == -1
       )
-        lines = [[1, 0], [1, 1], [1, 2]];
+        lines = [
+          [1, 0],
+          [1, 1],
+          [1, 2]
+        ];
       else if (
         this.board[2][0] == -1 &&
         this.board[2][1] == -1 &&
         this.board[2][2] == -1
       )
-        lines = [[2, 0], [2, 1], [2, 2]];
+        lines = [
+          [2, 0],
+          [2, 1],
+          [2, 2]
+        ];
       else if (
         this.board[0][0] == -1 &&
         this.board[1][0] == -1 &&
         this.board[2][0] == -1
       )
-        lines = [[0, 0], [1, 0], [2, 0]];
+        lines = [
+          [0, 0],
+          [1, 0],
+          [2, 0]
+        ];
       else if (
         this.board[0][1] == -1 &&
         this.board[1][1] == -1 &&
         this.board[2][1] == -1
       )
-        lines = [[0, 1], [1, 1], [2, 1]];
+        lines = [
+          [0, 1],
+          [1, 1],
+          [2, 1]
+        ];
       else if (
         this.board[0][2] == -1 &&
         this.board[1][2] == -1 &&
         this.board[2][2] == -1
       )
-        lines = [[0, 2], [1, 2], [2, 2]];
+        lines = [
+          [0, 2],
+          [1, 2],
+          [2, 2]
+        ];
       else if (
         this.board[0][0] == -1 &&
         this.board[1][1] == -1 &&
         this.board[2][2] == -1
       )
-        lines = [[0, 0], [1, 1], [2, 2]];
+        lines = [
+          [0, 0],
+          [1, 1],
+          [2, 2]
+        ];
       else if (
         this.board[2][0] == -1 &&
         this.board[1][1] == -1 &&
         this.board[0][2] == -1
       )
-        lines = [[2, 0], [1, 1], [0, 2]];
+        lines = [
+          [2, 0],
+          [1, 1],
+          [0, 2]
+        ];
       if (this.gameOver(this.board, this.HUMAN)) {
         console.log("human win!");
       }
@@ -335,8 +417,10 @@ export class EasyComponent implements OnInit {
     }
     // Display message according to who won the match
     if (this.gameOver(this.board, this.COMP)) {
+      this.calculatescore(this.COMP);
       this.toastrService.success("You Lose!", "GameBot:");
     } else if (this.gameOver(this.board, this.HUMAN)) {
+      this.calculatescore(this.HUMAN);
       this.toastrService.success("You Win!", "GameBot:");
     }
     // Display DRAW
@@ -344,6 +428,7 @@ export class EasyComponent implements OnInit {
       this.emptyCells(this.board).length == 0 &&
       !this.gameOverAll(this.board)
     ) {
+      this.calculatescore("DRAW");
       this.toastrService.warning("Game DRAW!", "GameBot:");
     }
     if (

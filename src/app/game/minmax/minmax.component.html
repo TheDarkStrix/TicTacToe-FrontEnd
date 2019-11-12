@@ -4,14 +4,14 @@
       <div class="col text no-pad text-right pr-2">
         <img [src]="win" alt="" />
       </div>
-      <div class="col align-self-center no-pad">Win:10</div>
+      <div class="col align-self-center no-pad">Win:{{ Hscore }}</div>
     </div>
     <div class="col">
       <div class="col d-flex justify-content-around">
         <div class="col text no-pad text-right pr-2">
           <img [src]="loss" alt="" />
         </div>
-        <div class="col align-self-center no-pad">Win:10</div>
+        <div class="col align-self-center no-pad">Loss:{{ Cscore }}</div>
       </div>
     </div>
     <div class="col">
@@ -19,7 +19,7 @@
         <div class="col text no-pad text-right pr-2">
           <img [src]="justice" alt="" />
         </div>
-        <div class="col align-self-center no-pad">Win:10</div>
+        <div class="col align-self-center no-pad">Draw:{{ DRAW }}</div>
       </div>
     </div>
   </div>
